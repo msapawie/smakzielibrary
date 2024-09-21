@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleportasi</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffeef8;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            border: 5px solid #ff66b2;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #ff66b2;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff3399;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #ff66b2;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 300px;
+        }
+        .hidden {
+            display: none;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        img {
+            margin-top: 20px;
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        .backButton {
+            background-color: #ffcccb;
+            color: #333;
+        }
+
+        /* Media query untuk perangkat seluler */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            input {
+                width: 80%;
+            }
+            img {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Daftar/Masuk Sekarang untuk Menjadi Pengguna Alat Teleportasi</h1>
+    <button id="loginButton">Masuk</button>
+    <button id="registerButton">Daftar</button>
+
+    <div id="errorPage" class="hidden">
+        <h2>Error: Halaman tidak ditemukan!</h2>
+        <button class="backButton" onclick="goBack()">Kembali</button>
+    </div>
+
+    <div id="registerPage" class="hidden">
+        <h2>Silakan Masukkan Nama</h2>
+        <input type="text" id="nameInput" placeholder="Masukkan Nama Lengkap">
+        <p>Catatan: Masukkan nama lengkap dengan huruf kapital.</p>
+        <button id="submitNameButton">Kirim</button>
+        <button class="backButton" onclick="goBack()">Kembali</button>
+        <div id="result" class="result hidden"></div>
+        <!-- Ubah src di bawah dengan path gambar yang benar -->
+        <img id="photo" src="https://i.imgur.com/xbD85RA.png" alt="ECA DIYANTI">
+    </div>
+
+    <script>
+        document.getElementById("loginButton").onclick = function() {
+            document.getElementById("errorPage").classList.remove("hidden");
+            document.getElementById("registerPage").classList.add("hidden");
+        };
+
+        document.getElementById("registerButton").onclick = function() {
+            document.getElementById("registerPage").classList.remove("hidden");
+            document.getElementById("errorPage").classList.add("hidden");
+        };
+
+        document.getElementById("submitNameButton").onclick = function() {
+            const name = document.getElementById("nameInput").value;
+            const result = document.getElementById("result");
+            const photo = document.getElementById("photo");
+
+            if (name === "ECA DIYANTI") {
+                result.textContent = "Selamat, nama telah terdaftar di hati admin.";
+                result.classList.remove("hidden");
+                photo.style.display = 'block'; // Pastikan gambar ditampilkan
+            } else {
+                result.textContent = "Nama ini tidak memenuhi syarat dan ketentuan.";
+                result.classList.remove("hidden");
+                photo.style.display = 'none'; // Sembunyikan gambar jika nama salah
+            }
+        };
+
+        function goBack() {
+            document.getElementById("registerPage").classList.add("hidden");
+            document.getElementById("errorPage").classList.add("hidden");
+            document.getElementById("nameInput").value = "";
+            document.getElementById("result").classList.add("hidden");
+            document.getElementById("photo").style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
+
